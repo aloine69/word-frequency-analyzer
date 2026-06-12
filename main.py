@@ -1,6 +1,9 @@
+from collections import Counter
+
+
 def start_analyzer():
-    word_count = {}
-    count_words(word_count)
+    word_count = count_words()
+    print(word_count)
     prev = 0
     for key, value in word_count.items():
         if value > prev:
@@ -8,12 +11,11 @@ def start_analyzer():
             prev = value
 
 
-def count_words(dict):
+def count_words():
     words = read_from_file("data.txt")
     word_list = words.split(" ")
-    for word in word_list:
-        count = word_list.count(word)
-        dict[word] = count
+    word_count = Counter(word_list)
+    return word_count
 
 
 def read_from_file(filename):
